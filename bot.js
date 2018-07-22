@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.on('ready', () => {
-  client.user.setGame('-help','https://www.twitch.tv/OvErDz1');
+  client.user.setGame('-help|-inv','https://www.twitch.tv/OvErDz1');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
@@ -388,6 +388,14 @@ client.on("message", message => {
             .setThumbnail(message.author.avatarURL)
             .setDescription(`
 **
+╭━━━┳━━━┳━╮╭━╮╭━━╮╭━━━┳━━━━╮
+┃╭━━┫╭━╮┣╮╰╯╭╯┃╭╮┃┃╭━╮┃╭╮╭╮┃
+┃╰━━┫┃╱┃┃╰╮╭╯╱┃╰╯╰┫┃╱┃┣╯┃┃╰╯
+┃╭━━┫┃╱┃┃╭╯╰╮╱┃╭━╮┃┃╱┃┃╱┃┃
+┃┃╱╱┃╰━╯┣╯╭╮╰╮┃╰━╯┃╰━╯┃╱┃┃
+╰╯╱╱╰━━━┻━╯╰━╯╰━━━┻━━━╯╱╰╯
+
+-:alarm_clock: شغال24 ساعة
 -🚀 سرعه اتصال ممتازه
 -😎 سهل الاستخدام 
 -⚠ صيانه كل يوم
@@ -469,7 +477,7 @@ client.on("message", message => {
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 
-
+**
 `)
 
         message.author.sendEmbed(embed)
@@ -1522,7 +1530,7 @@ client.on('message', msg => {
       @everyone|@here
       **تم الاقتراح من قبل :** ${msg.member}
 
-     ** الاقتراح *: 
+     ** الاقتراح **: 
       ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
       `)
       .then(function (message) {
