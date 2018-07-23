@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.on('ready', () => {
-  client.user.setGame('-help|-inv','https://www.twitch.tv/OvErDz1');
+  client.user.setGame('=help|=inv','https://www.twitch.tv/OvErDz1');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
@@ -9,7 +9,7 @@ client.on('ready', () => {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-});
+}); 
 
 
 client.on('message', message => {
@@ -26,7 +26,7 @@ m.sendMessage(args)
 
 
 client.on('message', message => {
-  if(message.content === "-bot") {
+  if(message.content === "==bot") {
       const embed = new Discord.RichEmbed()
       .setColor("#00FFFF")
       .setDescription(`**Servers**🌐 **__${client.guilds.size}__**
@@ -101,7 +101,7 @@ const Za7f = [
 
 
  client.on('message', message => {
-   if (message.content.startsWith("-38ab")) {
+   if (message.content.startsWith("=38ab")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -186,7 +186,7 @@ const x5bz4 = [
    '*** انتظر الجزء الثاني عندما يوصل البوت 100 سيرفر , ساعدنا في نشر البوت وادخل هذا السيرفر https://discord.gg/7mQHq4b ***'
 ]
  client.on('message', message => {
- if (message.content.startsWith('-Mr')) {
+ if (message.content.startsWith('=Mr')) {
   var mariam= new Discord.RichEmbed()
   .setTitle("لعبة مريم ..")
   .setColor('RANDOM')
@@ -221,7 +221,7 @@ const secreT = [
 
 
  client.on('message', message => {
-   if (message.content.startsWith("-5oatr")) {
+   if (message.content.startsWith("=5oatr")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -260,7 +260,7 @@ const secreT = [
 
 
 client.on('message', function(msg) {
-         var prefix = "-"
+         var prefix = "="
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
@@ -312,7 +312,7 @@ client.on("message", message => {
   
   let command = message.content.split(" ")[0];
   
-  if (command === "-mute") {
+  if (command === "=mute") {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
   let user = message.mentions.users.first();
   let modlog = client.channels.find('name', 'log');
@@ -349,10 +349,10 @@ return message.reply("**:white_check_mark: .. تم اعطاء العضو ميو�
   
   let command = message.content.split(" ")[0];
   
-  if (command === "-unmute") {
+  if (command === "=unmute") {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
   let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'mute-log');
+  let modlog = client.channels.find('name', 'log');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
   if (!muteRole) return message.reply("** لا يوجد لديك رتبه الميوت 'Muted' **").catch(console.error);
   if (message.mentions.users.size < 1) return message.reply('** يجب عليك منشنت شخص اولاً**').catch(console.error);
@@ -381,7 +381,7 @@ return message.reply("**:white_check_mark: .. تم فك الميوت عن الش
 
 
 client.on("message", message => {
-    if (message.content === "-help") {
+    if (message.content === "=help") {
 		message.channel.send('**تم ارسال الاوامر في الخاص**');
         const embed = new Discord.RichEmbed()
             .setColor("RANDOM")
@@ -406,61 +406,55 @@ client.on("message", message => {
 
 💎『اوامر عامة』💎
                         
-💎-server 『معلومات عن السيرفر』                      
+💎=server 『معلومات عن السيرفر』                      
 
-💎-servers 『علشان تشوف البوت بكم سيرفر اون لاين 』  
+💎=inv  『لمعرفة كم شخص دعوة 』
 
-💎-inv  『لمعرفة كم شخص دعوة 』
+💎=contact 『للتواصل مع صاحب البوت』
 
-💎-contact 『للتواصل مع صاحب البوت』
+💎=bot 『لمعرف البوت بكم سيرفر』 
 
-💎-adkar 『يجيب لك اذكار 』
+💎=members 『معلومات عن الاعضاء』
 
-💎-bot 『لمعرف البوت بكم سيرفر』 
+💎=embed 『خاصيه غرد لكن بغير طريقه』
 
-💎-ping 『لمعرفه سرعه البوت』
+💎=say 『لي يكرر الكلام الذي تقوله』
 
-💎-members 『معلومات عن الاعضاء』
-
-💎-embed 『خاصيه غرد لكن بغير طريقه』
-
-💎-say 『لي يكرر الكلام الذي تقوله』
-
-💎-sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
+💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 👑『اوامر ادارية』👑
 
-👑-ban 『لتعطي شخص باند』
+👑=ban 『لتعطي شخص باند』
 
-👑-kick 『لتعطي شخص كيك』
+👑=kick 『لتعطي شخص كيك』
 
-👑-clear 『لمسح الشات برقم』
+👑=clear 『لمسح الشات برقم』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 🎮『العاب』🎮
 
-🎮-tk  『 لعبة كت تويت 』
+🎮=tk  『 لعبة كت تويت 』
 
-🎮-mc  『 لعبة ماين كرافت 』
+🎮=mc  『 لعبة ماين كرافت 』
 
-🎮-Mr 『 للبدا بلعبة مريم 』
+🎮=Mr 『 للبدا بلعبة مريم 』
 
-🎮-sra7a  『 لبدأ لعبة صراحه 』
+🎮=sra7a  『 لبدأ لعبة صراحه 』
 
-🎮-38ab  『 عند الخساره في اي لعبة يستخدمها الخاسر 』
+🎮=38ab  『 عند الخساره في اي لعبة يستخدمها الخاسر 』
 
-🎮-hack  『 تهكير شخص  وهميا 』
+🎮=hack  『 تهكير شخص  وهميا 』
 
-🎮-cat 『 يعرض لك صورة قطة 』
+🎮=cat 『 يعرض لك صورة قطة 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 🎴『اوامر الصور』🎴
 
-🎴-avatar 『لي عرض صورتك او صوره اي شخص』
+🎴=avatar 『لي عرض صورتك او صوره اي شخص』
 
 🎴قريبا
 
@@ -468,9 +462,9 @@ client.on("message", message => {
 
 💎『الدعم الفني والمساعدة』💎
 
--inv | القسم الاول لي اضافه البوت 
+=inv | القسم الاول لي اضافه البوت 
 
--support| القسم الثاني  الدعم الفني و المساعدة
+=support| القسم الثاني  الدعم الفني و المساعدة
 
 @!           'EpicVolly_xD#4509  |  القسم الثالث مصمم البوت 
 
@@ -505,7 +499,7 @@ client.on("message", message => {
 
 
 client.on("message", message => {
- if (message.content === "-support") {
+ if (message.content === "=support") {
   const embed = new Discord.RichEmbed()
       .setColor("RANDOM")
       .addField('قريباا', ` Soooon...`)
@@ -546,7 +540,7 @@ client.on("message", message => {
 
 
    client.on("message", msg => {
-           var prefix = "-";
+           var prefix = "=";
   if(msg.content.startsWith (prefix + "id")) {
     if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
       const embed = new Discord.RichEmbed();
@@ -580,7 +574,7 @@ client.on("message", message => {
 const TOKEN = "";
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith('-' + str);
+    return msg.content.toLowerCase().startsWith('=' + str);
 }
 
 function pluck(array) {
@@ -614,17 +608,38 @@ function hasRole(mem, role) {
 
 
 
+  function timeCon(time) {
+    let days = Math.floor(time % 31536000 / 86400)
+    let hours = Math.floor(time % 31536000 % 86400 / 3600)
+    let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60)
+    let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60)
+    days = days > 9 ? days : '0' + days
+    hours = hours > 9 ? hours : '0' + hours
+    minutes = minutes > 9 ? minutes : '0' + minutes
+    seconds = seconds > 9 ? seconds : '0' + seconds
+    return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
+}
 client.on('message', message => {
-     if (message.content === "-ping") {
-      const embed = new Discord.RichEmbed()
- 
-  .setColor("#FF0000")
-  .addField('``سرعة أتصال الــبوت`` ' , `${Date.now() - message.createdTimestamp}` + ' ms`')
-                 .setFooter(` Hello
- .`, 'Hello')
-
-  message.channel.sendEmbed(embed);
-    }
+    if (message.content.startsWith("=bot")) {
+    message.channel.send({
+        embed: new Discord.RichEmbed()
+            .setAuthor(client.user.username,client.user.avatarURL)
+            .setThumbnail(client.user.avatarURL)
+            .setColor('RANDOM')
+            .setTitle('``INFO Fox Bot`` ')
+            .addField('``Uptime``', [timeCon(process.uptime())], true)
+            .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
+            .addField('``servers``', [client.guilds.size], true)
+            .addField('``channels``' , `[ ${client.channels.size} ]` , true)
+            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
+            .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
+            .addField('``My ID``' , `[ ${client.user.id} ]` , true)
+                  .addField('``My Prefix``' , `=` , true)
+                  .addField('``My Language``' , `[ Java Script ]` , true)
+                  .setFooter('By | IIVolly_xD ')
+    })
+}
 });
 
 
@@ -632,7 +647,7 @@ client.on('message', message => {
 
   
   
-var prefix = "-"
+var prefix = "="
 client.on('message', message => {
   if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'bc')) {
@@ -688,7 +703,7 @@ msg.delete();
 
 
 client.on('message', message => {
-    if (message.content === "-roles") {
+    if (message.content === "=roles") {
 		if(!message.channel.guild) return;
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
@@ -709,7 +724,7 @@ client.on('message', message => {
 
 
 
-   var prefix = "-";
+   var prefix = "=";
 var cats = [
 
 "https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg",
@@ -766,7 +781,6 @@ message.channel.sendEmbed(cat);
 
 
 
-const Client = new Discord.Client();
 
 
 
@@ -782,38 +796,6 @@ const Client = new Discord.Client();
 
 
 
-         client.on('message', message => {
-            if (message.content === 'شكر') {
-              message.channel.sendFile("https://cdn.discordapp.com/attachments/443100594228690944/453548642742042634/dd.gif");
-            }
-         });
-
-
-
-
-
-
-
-
-         client.on('message', message => {
-            if (message.content === 'باك') {
-              message.channel.sendFile("https://cdn.discordapp.com/attachments/443100594228690944/453547344311484426/sss.gif");
-            }
-         });
-         
-         
-         
-         
-         
-         
-         
-         
-         
-                      client.on('message', message => {
-            if (message.content === 'هكر') {
-              message.channel.sendFile("https://cdn.discordapp.com/attachments/443100595788840970/453581429557821440/images.jpg");
-            }
-         });
 
 
 
@@ -880,7 +862,7 @@ message.react("??")
 
 
 client.on('message', message => {
-    if (message.content.startsWith("-avatar")) {
+    if (message.content.startsWith("=avatar")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -1050,7 +1032,7 @@ if (command == "gharad") {
 
 
 client.on("message", message => {
-    var prefix = "-";
+    var prefix = "=";
  
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix - "clear")) {
@@ -1145,7 +1127,7 @@ const cuttweet = [
 ]
 
 client.on('message', message => {
-  if (message.content === `-tk`) {
+  if (message.content === `=tk`) {
 message.channel.sendMessage({embed: {
   color: 3547003,
   description: `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`
@@ -1173,7 +1155,7 @@ message.channel.sendMessage({embed: {
 
 
 
-var prefix = "-";
+var prefix = "=";
 
 client.on('message', message => {
   if (message.author.bot) return;
@@ -1223,7 +1205,7 @@ if (command == "embed") {
 
 
 client.on("message", message => {
-    var prefix = "-";
+    var prefix = "=";
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix + "clear")) {
  if (!args[1]) {
@@ -1263,7 +1245,7 @@ client.on("message", message => {
 
 
 
-  var prefix = "-";
+  var prefix = "=";
     client.on('message', message => {
     if(message.content.startsWith(prefix + 'Mavatar')) {
          var men = message.mentions.users.first();
@@ -1366,7 +1348,7 @@ const Sra7a = [
     'صراحه  |  ما هي أمنياتك المُستقبلية؟‏',
 ]
   client.on('message', message => {
-if (message.content.startsWith('-sra7a')) {
+if (message.content.startsWith('=sra7a')) {
     if(!message.channel.guild) return message.reply('** This command only for servers **');
  var client= new Discord.RichEmbed()
  .setTitle("لعبة صراحة ..")
@@ -1387,7 +1369,7 @@ if (message.content.startsWith('-sra7a')) {
 
 
 client.on('message', message => {
-    if(message.content == '-member') {
+    if(message.content == '=member') {
     const embed = new Discord.RichEmbed()
     .setDescription(`**Members info🔋
 :green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
@@ -1493,7 +1475,7 @@ client.on('message', message => {
  })
 
 const devs = ['354527650657861633' , '' , '' , ''];
-const adminprefix = "-";
+const adminprefix = "=";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!devs.includes(message.author.id)) return;
@@ -1511,14 +1493,14 @@ client.on('message', message => {
       message.channel.sendMessage(`**✅   ${argresult}**`)
   } else
   if (message.content.startsWith(adminprefix + 'st')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    client.user.setGame(argresult, "https://www.twitch.tv/OvErDz1");
       message.channel.sendMessage(`**✅   ${argresult}**`)
   }
   }); 
 
 client.on('message', msg => {
   //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
-  if(msg.content.startsWith('-sug')) {
+  if(msg.content.startsWith('=sug')) {
     if(!msg.channel.guild) return msg.reply('** هاذا الامر فقط للسيرفرات**');
     if(!msg.guild.channels.find('name', 'sug')) return msg.reply('**الرجاء إضافة روم بإسم (sug)**');
     let args = msg.content.split(" ").slice(1);
@@ -1605,7 +1587,7 @@ client.on('message', msg => {
 
 
 client.on('message', message => {
-  if(message.content.startsWith(`${prefix}invites`)) {
+  if(message.content.startsWith(`=invites`)) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
@@ -1642,7 +1624,7 @@ let embed = new Discord.RichEmbed()
 
 
 client.on("message", message => {
- if (message.content === "-inv") {
+ if (message.content === "=inv") {
   const embed = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setFooter('©Fox Bot')
@@ -1655,7 +1637,7 @@ client.on("message", message => {
 
 
 client.on('message', message => {
-    if(message.content.startsWith ("-marry")) {
+    if(message.content.startsWith ("=marry")) {
     if(!message.channel.guild) return message.reply('** This command only for servers **')
     var proposed = message.mentions.members.first()
    
