@@ -423,6 +423,8 @@ client.on("message", message => {
 
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
+💎=emojil 『يعطيك رابط الايموجي الي في تبيه』
+
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 👑『اوامر ادارية』👑
@@ -1671,7 +1673,7 @@ message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
 client.on('message', message =>{
   let args = message.content.split(' ');
   let prefix = '=';
-if(args[0] === `${prefix}emoji`){
+if(args[0] === `${prefix}emojil`){
 let findEmoji = args[1];
 
 if(!findEmoji || findEmoji === '') return  message.reply(`**أدخل الايموجي**`);
