@@ -2,10 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
  const prefix = "=";
 client.on('ready', () => {
-  client.user.setGame('=help|=inv','https://www.twitch.tv/OvErDz1');
-  console.log('---------------');
-  console.log(' Bot Is Online')
-  console.log('---------------')
+    console.log('I am ready!');
 });
 
 client.on('ready', () => {
