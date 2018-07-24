@@ -1702,5 +1702,168 @@ message.channel.send({ embed  : EmojiEmbed });
 });
 
 
+client.on('message', message => {
+  if(!message.channel.guild) return;
+  if(message.content.startsWith(prefix + 'move')) {
+          if(!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("⚠️|`انت لا تمتلك الخاصيه المطلوبة`");  
+   if (message.member.hasPermission("MOVE_MEMBERS")) {
+   if (message.mentions.users.size === 0) {
+   return message.channel.send("``للأستخدام اكتب  : " +prefix+ "move [USER]``")
+  }
+  if (message.member.voiceChannel != null) {
+   if (message.mentions.members.first().voiceChannel != null) {
+   var authorchannel = message.member.voiceChannelID;
+   var usermentioned = message.mentions.members.first().id;
+  var embed = new Discord.RichEmbed()
+   .setTitle("Succes!")
+   .setColor("#000000")
+   .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
+  var embed = new Discord.RichEmbed()
+  .setTitle(`You are Moved in ${message.guild.name}`)
+   .setColor("RANDOM")
+  .setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
+   message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+  message.guild.members.get(usermentioned).send(embed)
+  } else {
+  message.channel.send("`لا تستطيع سحب `"+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
+  }
+  } else {
+   message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
+  }
+  } else {
+  message.react("❌")
+   }
+  }
+  });
+ 
+  
+  client.on('message',   eyad =>{
+   
+    var  args = eyad.content.split(" ").slice(2).join(" ")
+    var men = eyad.mentions.users.first()|| client.users.get(eyad.content.split(' ')[1])
+    var  mas = eyad.author
+                              if(eyad.content.startsWith(prefix + 'sar7')) {
+                              if(eyad.channel.type === "dm"){
+if(!args) return  eyad.channel.send("`حط بعد الايدي الرساله وانا برسلها :)`");
+if(!men) return  eyad.channel.send("`حط ايدي الشخص \n او يقد يكون الشخص ليس موجود في سرفرات مشتركه بيني وبينة`");
+                      var currentTime = new Date(),
+            Year = currentTime.getFullYear(),
+            Month = currentTime.getMonth() + 1,
+            Day = currentTime.getDate();
+     var eyadandr3d = new Discord.RichEmbed()
+     .setAuthor(eyad.author.username , eyad.author.avatarURL)
+     .setThumbnail(men.avatarURL)
+     .setDescription(`هل انت موافق لارسال الرساله \n موافق = ✅ \nرفض = ❌ \n**محتوي الرسالة : ${args}**`)
+     .setTimestamp()
+     .setFooter('لديك 60 ثانية للاختيار')
+     eyad.channel.send(eyadandr3d).then(message => {
+ message.react('✅').then(r=>{
+ message.react('❌').then(r=>{            
+    var kk = (reaction, user) => reaction.emoji.name === '✅' && user.id === eyad.author.id;    
+    var nn = (reaction, user) => reaction.emoji.name === '❌' && user.id === eyad.author.id;
+    var kkk = message.createReactionCollector(kk, { time: 60000 });
+    var nnn = message.createReactionCollector(nn, { time: 60000 });
+kkk.on("collect", r => {
+          const embed = new Discord.RichEmbed()
+               .setThumbnail("https://cdn.discordapp.com/attachments/429056808561278979/450412294078332948/download.jpg")  
+               .setColor("RANDOM")
+               .addField('**●[اهلا بك]** ', `<@${men.id}>` , true)
+               .addField('**●[لقد تمت مصارحتك]**' ,       ` __${args}__ ` , true)
+               .addField('**●[تاريخ المصارحة]**' , Day + "-" + Month + "-" + Year , true)
+          client.users.get(men.id).sendEmbed(embed)
+          eyad.reply(`لقد تم ارسال الصراحه للشخص \n <@${men.id}>`)
+message.delete()
+          eyad.delete();
+})
+nnn.on("collect", r => {
+message.delete()
+eyad.reply("`تم الغاء الصراحة`")
+eyad.delete();
+})
+})
+})
+})
+}
+}
+});
+
+
+
+
+
+
+
+
+
+client.on('message',function(message) {
+  if(message.content === prefix + "inv") {
+      if(!message.channel.guild) return;
+      var mmmmEmbed = new Discord.RichEmbed()
+      .setAuthor(client.user.username)
+      .setTitle('-  اضغط هنا !.')
+      .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot`)
+      .setThumbnail(client.user.avatarURL)
+      .setFooter(`- Requested By: ${message.author.tag}`,message.author.avatarURL);
+      message.channel.send(mmmmEmbed)
+  }
+});
+
+
+client.on('message', function(message) {
+  if(message.content.startsWith(prefix + 'roll')) {
+     var args = message.content.split(" ").slice(1);
+      if (!args[0]) {
+          message.channel.send('**حط رقم معين يتم السحب منه**');
+          return;
+          }
+  message.channel.send(Math.floor(Math.random() * args.join(' ')));
+          if (!args[0]) {
+        message.edit('1')
+        return;
+      }
+  }
+});
+
+
+client.on("message", message => {
+ 
+             
+  if(!message.channel.guild) return;
+if(message.author.bot) return;
+if(message.content === prefix + "icon"){
+  const embed = new Discord.RichEmbed()
+
+.setTitle(`This is  ** ${message.guild.name} **  Photo !`)
+.setAuthor(message.author.username, message.guild.iconrURL)
+.setColor(0x164fe3)
+.setImage(message.guild.iconURL)
+.setURL(message.guild.iconrURL)
+            .setTimestamp()
+
+message.channel.send({embed});
+}
+});
+
+
+client.on("message", message => {
+ 
+             
+  if(!message.channel.guild) return;
+if(message.author.bot) return;
+if(message.content === prefix + "icon"){
+  const embed = new Discord.RichEmbed()
+
+.setTitle(`This is  ** ${message.guild.name} **  Photo !`)
+.setAuthor(message.author.username, message.guild.iconrURL)
+.setColor(0x164fe3)
+.setImage(message.guild.iconURL)
+.setURL(message.guild.iconrURL)
+            .setTimestamp()
+
+message.channel.send({embed});
+}
+});
+
+
 
 client.login(process.env.BOT_TOKEN);
