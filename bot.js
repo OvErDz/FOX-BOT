@@ -28,7 +28,7 @@ m.sendMessage(args)
 bot.on('message', msg => {
   if(msg.author.bot) return;
   
-  if(msg.content === '&&&&linkos') {
+  if(msg.content === 'linkos') {
     bot.guilds.forEach(g => {
       
       let l = g.id
