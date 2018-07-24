@@ -469,6 +469,8 @@ client.on("message", message => {
 
 🎮=sar7『 لمصارحة شخص كل ماعليك كتبة الامر في خاص البوت 』
 
+🎮=tr 『 لترجمة كلمة 』
+
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 🎴『اوامر الصور』🎴
@@ -500,21 +502,74 @@ client.on("message", message => {
 
 
 
-client.on('message', message => {
-  if(message.content.startsWith('=moveall')) {
-   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
-     if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
-  if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
-   var author = message.member.voiceChannelID;
-   var m = message.guild.members.filter(m=>m.voiceChannel)
-   message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
-   m.setVoiceChannel(author)
-   })
-   message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
+const moment = require('moment');
+ 
+client.on("guildMemberAdd", member => {
+let welcomer = member.guild.channels.find("name","welcome");
+      if(!welcomer) return;
+      if(welcomer) {
+         moment.locale('ar-ly');
+         var h = member.user;
+        let norelden = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(h.avatarURL)
+        .setAuthor(h.username,h.avatarURL)
+        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
+         .addField(': تاريخ دخولك السيرفر',`${moment(member.joinedAt).format('D/M/YYYY h:mm a ')} \n\`\`${moment(member.joinedAt).startOf(' ').fromNow()}\`\``, true)      
+         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
+     welcomer.send({embed:norelden});          
+               
+ 
+      }
+      });
 
 
-   }
-     });
+
+
+      client.on('message', message => {
+        if (message.content.startsWith("=tr")) {
+         
+            const translate = require('google-translate-api');
+           
+     
+        let toTrans = message.content.split(' ').slice(1);
+        let language;
+     
+        language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+        if (!language) {
+            return message.reply(`Please supply valid agruments.\n**Example** \`-translate [text] to [language]\``);
+        }
+        let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+        translate(finalToTrans, {to: language}).then(res => {
+                message.channel.send({embed: {
+                    color: 3447003,
+                    author: {
+                      name: 'S Bot\'s translator',
+                      icon_url: client.user.avatarURL
+                    },
+                    fields: [{
+                        name: "Translator",
+                        value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
+                      }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                      icon_url: client.user.avatarURL,
+                      text: "S Bot"
+                    }
+                  }
+                });
+        }).catch(err => {
+            message.channel.send({
+                embed: {
+                    description: '❌ We could not find the supplied language.',
+                    color: 0xE8642B
+                }
+            });
+        });
+        }
+    });
+     
 
 
 
@@ -539,7 +594,6 @@ client.on("message", message => {
 
  }
 });
-
 
 
 
@@ -662,7 +716,7 @@ var id = new  Discord.RichEmbed()
 .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
 .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
 .addField(': عدد الدعوات', inviteCount,false)
-.setFooter("S Bot.")  
+.setFooter("Fox Bot.")  
 message.channel.sendEmbed(id);
 })
 }
