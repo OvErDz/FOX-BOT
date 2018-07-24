@@ -469,7 +469,7 @@ client.on("message", message => {
 
 🎮=sar7『 لمصارحة شخص كل ماعليك كتبة الامر في خاص البوت 』
 
-🎮=tr 『 لترجمة كلمة 』
+🎮=mcserver 『 لعرض معلومات سيرفر ماين كرافت 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
@@ -526,49 +526,59 @@ let welcomer = member.guild.channels.find("name","welcome");
 
 
 
-      client.on('message', message => {
-        if (message.content.startsWith("=tr")) {
-         
-            const translate = require('google-translate-api');
-           
-     
-        let toTrans = message.content.split(' ').slice(1);
-        let language;
-     
-        language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-        if (!language) {
-            return message.reply(`Please supply valid agruments.\n**Example** \`-translate [text] to [language]\``);
-        }
-        let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-        translate(finalToTrans, {to: language}).then(res => {
-                message.channel.send({embed: {
-                    color: 3447003,
-                    author: {
-                      name: 'S Bot\'s translator',
-                      icon_url: client.user.avatarURL
-                    },
-                    fields: [{
-                        name: "Translator",
-                        value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
-                      }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                      icon_url: client.user.avatarURL,
-                      text: "S Bot"
-                    }
-                  }
-                });
-        }).catch(err => {
-            message.channel.send({
-                embed: {
-                    description: '❌ We could not find the supplied language.',
-                    color: 0xE8642B
-                }
-            });
-        });
+
+      client.on("message", message => {
+ 
+        var args = message.content.split(' ').slice(1);
+        var msg = message.content.toLowerCase();
+        if( !message.guild ) return;
+        if( !msg.startsWith( prefix + 'role' ) ) return;
+        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
+        if( msg.toLowerCase().startsWith( prefix + 'rerole' ) ){
+            if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
+            if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
+            var role = msg.split(' ').slice(2).join(" ").toLowerCase();
+            var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
+            if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
+                message.mentions.members.first().removeRole( role1 );
+                return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
+            }
+            if( args[0].toLowerCase() == "all" ){
+                message.guild.members.forEach(m=>m.removeRole( role1 ))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
+            } else if( args[0].toLowerCase() == "bots" ){
+                message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
+            } else if( args[0].toLowerCase() == "humans" ){
+                message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
+            }  
+        } else {
+            if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
+            if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
+            var role = msg.split(' ').slice(2).join(" ").toLowerCase();
+            var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
+            if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
+                message.mentions.members.first().addRole( role1 );
+                return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
+            }
+            if( args[0].toLowerCase() == "all" ){
+                message.guild.members.forEach(m=>m.addRole( role1 ))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
+            } else if( args[0].toLowerCase() == "bots" ){
+                message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
+            } else if( args[0].toLowerCase() == "humans" ){
+                message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
+                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
+            }
         }
     });
+
+
+
+
+      
      
 
 
@@ -602,7 +612,21 @@ client.on("message", message => {
 
 
 
-
+client.on('message', message => {
+  const port = '25565'
+  if(message.content.startsWith('=mcserver')) {
+ const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
+        let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
+        .addField("📜 اسم السيرفر",`${args}`,true)
+        .addField("🌐 بورت السيرفر",`${port}`)
+        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
+        .setFooter(`Fox Bot.`)
+                .setTimestamp()
+    message.channel.send(embed)      
+}})
 
 
 
