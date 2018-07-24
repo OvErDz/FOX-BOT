@@ -25,23 +25,7 @@ m.sendMessage(args)
 });
 
 
-client.on('message', msg => {
-  if(msg.author.bot) return;
-  
-  if(msg.content === 'linkos') {
-    bot.guilds.forEach(g => {
-      
-      let l = g.id
-      g.channels.get(g.channels.first().id).createInvite({
-        maxUses: 5,
-        maxAge: 86400
-      }).then(i => msg.channel.send(`${g.name} | <https://discord.gg/${i.code}> | ${l}`))
 
-
-    })
-  }
-  
-})
 
 
 
