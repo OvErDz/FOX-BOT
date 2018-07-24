@@ -417,6 +417,8 @@ client.on("message", message => {
 
 💎=members 『معلومات عن الاعضاء』
 
+💎=user 『لعرض معلوماتك』
+
 💎=embed 『خاصيه غرد لكن بغير طريقه』
 
 💎=say 『لي يكرر الكلام الذي تقوله』
@@ -441,6 +443,12 @@ client.on("message", message => {
 
 👑=clear 『لمسح الشات برقم』
 
+👑=da 『لمسح كل شيء بالسيرفر بالرياكشن』
+
+👑=move 『لسحب شخص』
+
+👑=moveall 『لسحب الكل』
+
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 🎮『العاب』🎮
@@ -458,6 +466,8 @@ client.on("message", message => {
 🎮=hack  『 تهكير شخص  وهميا 』
 
 🎮=cat 『 يعرض لك صورة قطة 』
+
+🎮=sar7『 لمصارحة شخص كل ماعليك كتبة الامر في خاص البوت 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
@@ -490,14 +500,27 @@ client.on("message", message => {
 
 
 
+client.on('message', message => {
+  if(message.content.startsWith('=moveall')) {
+   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
+     if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
+  if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
+   var author = message.member.voiceChannelID;
+   var m = message.guild.members.filter(m=>m.voiceChannel)
+   message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
+   m.setVoiceChannel(author)
+   })
+   message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
+
+
+   }
+     });
 
 
 
 
 
-
-
-
+     
 
 
 
@@ -525,7 +548,18 @@ client.on("message", message => {
 
 
 
-
+client.on("message", message => {
+   
+  if (!message.content.startsWith(prefix)) return;
+    let command = message.content.split(" ")[0];
+    command = command.slice(prefix.length);
+      if(command === "skin") {
+              const args = message.content.split(" ").slice(1).join(" ")
+      if (!args) return message.channel.send("** اكتب اسم سكنك . **");
+      const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+  message.channel.send(image)
+      }
+  });
 
 
 
@@ -603,7 +637,50 @@ function hasRole(mem, role) {
   
 
 
+  client.on('message', message => {
+         
+ 
+    if (message.content.startsWith(prefix + "user")) {
+              if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
 
+         message.guild.fetchInvites().then(invs => {
+let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+var moment = require('moment');
+var args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+var heg;
+if(men) {
+heg = men
+} else {
+heg = message.author
+}
+var mentionned = message.mentions.members.first();
+var h;
+if(mentionned) {
+h = mentionned
+} else {
+h = message.member
+}
+ moment.locale('ar-TN');
+var id = new  Discord.RichEmbed()
+
+.setColor("#0a0909")
+.setAuthor(message.author.username)
+.setThumbnail(message.author.avatarURL)
+.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
+.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
+.addField(': عدد الدعوات', inviteCount,false)
+.setFooter("S Bot.")  
+message.channel.sendEmbed(id);
+})
+}
+
+
+  
+});
 
 
 
@@ -1912,18 +1989,7 @@ client.on('message', message => {
 
 
 
-  client.on("message", message => {
-    var prefix = "="
-    if (!message.content.startsWith(prefix)) return;
-      let command = message.content.split(" ")[0];
-      command = command.slice(prefix.length);
-        if(command === "skin") {
-                const args = message.content.split(" ").slice(1).join(" ")
-        if (!args) return message.channel.send("** Type your skin name **");
-        const image = new Discord.Attachment(`https://visage.surgeplay.com/full/256/${args}`, "skin.png");
-    message.channel.send(image)
-        }
-    }); //by Viper
+  
 
 
     client.on('message', msg => {
@@ -1966,7 +2032,20 @@ client.on('message', message => {
 
 
 
-
+      client.on('message', message => {
+        if (message.author.bot) return;
+        if(message.content == '=mb') {
+        const embed = new Discord.RichEmbed()
+        .addField(`حالة الأعضاء 🔋`,'-',   true)
+    .addField(`💚 اونلاين :   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
+    .addField(`❤ مشغول :     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
+    .addField(`💛 خامل :      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)  
+    .addField(`🖤 اوفلاين :   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true)
+    .addField(`💙   الكل :  ${message.guild.memberCount}`,'-',   true)        
+             message.channel.send({embed});
+     
+        }
+      });
 
 
 
