@@ -409,7 +409,7 @@ client.on("message", message => {
 
 💎=server 『معلومات عن السيرفر』                      
 
-💎=inv  『لمعرفة كم شخص دعوة 』
+💎=mb  『لعرض حالة الاعضاء 』
 
 💎=contact 『للتواصل مع صاحب البوت』
 
@@ -424,6 +424,12 @@ client.on("message", message => {
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
 💎=emojil 『يعطيك رابط الايموجي الي في تبيه』
+
+💎=ms7f 『لاضهار المصحف』
+
+💎=icon 『لاضهار صورة السيرفر 』
+
+💎=roll 『عمل قرعة 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
@@ -1591,16 +1597,7 @@ client.on('message', msg => {
 
 
 
-client.on('message', message => {
-   if(message.content.startsWith(prefix + "invites")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-message.channel.send(`** :heart: __${user}__ Has __${inviteCount}__ Invites. :heart: **`);
-});
-  }
-});
+
 
 
 
@@ -1632,16 +1629,6 @@ let embed = new Discord.RichEmbed()
 
 
 
-client.on("message", message => {
- if (message.content === "=inv") {
-  const embed = new Discord.RichEmbed()
-      .setColor("RANDOM")
-      .setFooter('©Fox Bot')
-      .addField('شكراَ لاستخدامك Fox Bot', 'https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot')
-  message.author.send({embed});
-
- }
-});
 
 
 
@@ -1922,5 +1909,71 @@ client.on('message', message => {
   }
   });
    
+
+
+
+  client.on("message", message => {
+    var prefix = "="
+    if (!message.content.startsWith(prefix)) return;
+      let command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+        if(command === "skin") {
+                const args = message.content.split(" ").slice(1).join(" ")
+        if (!args) return message.channel.send("** Type your skin name **");
+        const image = new Discord.Attachment(`https://visage.surgeplay.com/full/256/${args}`, "skin.png");
+    message.channel.send(image)
+        }
+    }); //by Viper
+
+
+    client.on('message', msg => {
+      var prefix = "=";
+        if(!msg.guild) return;
+          if(!msg.member.hasPermission('MANAGE_CHANNELS')) return message.reply('**⚠ لا يوجد لديك صلاحية**');
+          if (msg.content.startsWith(prefix +'da')) {
+      let ra3d = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.author.avatarURL)
+      .setDescription(`هل انت متاكد من مسح كل شي بالسيرفر ؟\n  ✅  \n  ❌ \n  لديك 60 ثانية للاختيار`)                                                                                                                                                                       
+      msg.channel.send(ra3d).then(message => {
+       message.react('✅').then(r=>{
+       message.react('❌').then(r=>{           
+       let sd = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id;
+       let nd = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
+       let ds  = message.createReactionCollector(sd, { time: 60000 });
+       let dn  = message.createReactionCollector(nd, { time: 60000 });
+      dn.on("collect", r => {
+      msg.channel.send("`تم الالغاء`")
+      message.delete();
+      })
+      ds.on("collect", r => {
+      message.guild.roles.forEach(r => { r.delete() }) 
+           message.guild.channels.forEach(c => { c.delete() })
+           message.guild.createChannel('general', 'text').then(c=> c.send(ra3d));
+           let ra3d = new Discord.RichEmbed()
+                  .setColor('#fd0101')
+                  .setDescription('`تم حذف كل شي في السيرفر✅`')
+                 message.channel.sendEmbed(ra3d);
+      })
+      })
+      })
+      })
+      }
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 client.login(process.env.BOT_TOKEN);
