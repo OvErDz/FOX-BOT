@@ -421,8 +421,6 @@ client.on("message", message => {
 
 💎=embed 『خاصيه غرد لكن بغير طريقه』
 
-💎=say 『لي يكرر الكلام الذي تقوله』
-
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
 💎=emojil 『يعطيك رابط الايموجي الي في تبيه』
@@ -1328,11 +1326,7 @@ client.on('message', message => {
 
   let args = message.content.split(" ").slice(1);
 
-// -say
-  if (command === "say") {
-          message.delete()
-    message.channel.sendMessage(args.join(" ")).catch(console.error);
-  }
+ 
   
  
 
