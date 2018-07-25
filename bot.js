@@ -2022,7 +2022,7 @@ client.on('message', message => {
 
 
 
-var prefix = "$";
+var prefix = "=";
 const sql = require("sqlite");
 client.on("message", async message => {
     if (message.content.startsWith(prefix + "at")) {
