@@ -17,18 +17,12 @@ if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('&&bcall')){
 if(!message.author.id === '354527650657861633') return;
-message.channel.sendMessage('جار ارسال الرسالة يارئيي|✅')
+message.channel.sendMessage('جار ارسال الرسالة |✅')
 client.users.forEach(m =>{
 m.sendMessage(args)
 })
 }
 });
-
-
-
-
-
-
 
 
 client.on('message', message => {
@@ -415,7 +409,7 @@ client.on("message", message => {
 
 💎=server 『معلومات عن السيرفر』                      
 
-💎=mb  『لعرض حالة الاعضاء 』
+💎=inv  『لمعرفة كم شخص دعوة 』
 
 💎=contact 『للتواصل مع صاحب البوت』
 
@@ -423,19 +417,13 @@ client.on("message", message => {
 
 💎=members 『معلومات عن الاعضاء』
 
-💎=user 『لعرض معلوماتك』
-
 💎=embed 『خاصيه غرد لكن بغير طريقه』
+
+💎=say 『لي يكرر الكلام الذي تقوله』
 
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
 💎=emojil 『يعطيك رابط الايموجي الي في تبيه』
-
-💎=ms7f 『لاضهار المصحف』
-
-💎=icon 『لاضهار صورة السيرفر 』
-
-💎=roll 『عمل قرعة 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
@@ -447,31 +435,13 @@ client.on("message", message => {
 
 👑=clear 『لمسح الشات برقم』
 
-👑=move 『لسحب شخص لرومك』
-
-👑=move all 『لسب الكل لرومك』
-
-👑=role 『لاعطاء شخص رتبة』
-
-👑=rerole 『لسحب رتبة من شخص 』
-
-👑=role all  『لاعطاء الكل رتبة』
-
-👑=rerole all  『لسحب رتبة من الكل』
-
-👑=role bots 『لاعطاء البوتات رتبة』
-
-👑=rerole bots 『لسحب من البوتات رتبة』
-
-👑=role humans  『لاعطاء البشريين رتبة』
-
-👑=rerole humans  『لسحب من البشريين رتبة』
-
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
 🎮『العاب』🎮
 
 🎮=tk  『 لعبة كت تويت 』
+
+🎮=mc  『 لعبة ماين كرافت 』
 
 🎮=Mr 『 للبدا بلعبة مريم 』
 
@@ -482,10 +452,6 @@ client.on("message", message => {
 🎮=hack  『 تهكير شخص  وهميا 』
 
 🎮=cat 『 يعرض لك صورة قطة 』
-
-🎮=sar7『 لمصارحة شخص كل ماعليك كتبة الامر في خاص البوت 』
-
-🎮=mcserver 『 لعرض معلومات سيرفر ماين كرافت 』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 
@@ -518,90 +484,14 @@ client.on("message", message => {
 
 
 
-const moment = require('moment');
- 
-client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","welcome");
-      if(!welcomer) return;
-      if(welcomer) {
-         moment.locale('ar-ly');
-         var h = member.user;
-        let norelden = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(h.avatarURL)
-        .setAuthor(h.username,h.avatarURL)
-        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)            
-         .addField(': تاريخ دخولك السيرفر',`${moment(member.joinedAt).format('D/M/YYYY h:mm a ')} \n\`\`${moment(member.joinedAt).startOf(' ').fromNow()}\`\``, true)      
-         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
-     welcomer.send({embed:norelden});          
-               
- 
-      }
-      });
 
 
 
 
 
-      client.on("message", message => {
- 
-        var args = message.content.split(' ').slice(1);
-        var msg = message.content.toLowerCase();
-        if( !message.guild ) return;
-        if( !msg.startsWith( prefix + 'role' ) ) return;
-        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
-        if( msg.toLowerCase().startsWith( prefix + 'rerole' ) ){
-            if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
-            if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
-            var role = msg.split(' ').slice(2).join(" ").toLowerCase();
-            var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
-            if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
-                message.mentions.members.first().removeRole( role1 );
-                return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
-            }
-            if( args[0].toLowerCase() == "all" ){
-                message.guild.members.forEach(m=>m.removeRole( role1 ))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
-            } else if( args[0].toLowerCase() == "bots" ){
-                message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
-            } else if( args[0].toLowerCase() == "humans" ){
-                message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
-            }  
-        } else {
-            if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
-            if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
-            var role = msg.split(' ').slice(2).join(" ").toLowerCase();
-            var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
-            if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
-                message.mentions.members.first().addRole( role1 );
-                return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
-            }
-            if( args[0].toLowerCase() == "all" ){
-                message.guild.members.forEach(m=>m.addRole( role1 ))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
-            } else if( args[0].toLowerCase() == "bots" ){
-                message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
-            } else if( args[0].toLowerCase() == "humans" ){
-                message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
-                return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
-            }
-        }
-    });
 
 
 
-
-      
-     
-
-
-
-
-
-     
 
 
 
@@ -628,21 +518,8 @@ client.on("message", message => {
 
 
 
-client.on('message', message => {
-  const port = '25565'
-  if(message.content.startsWith('=mcserver')) {
- const args = message.content.split(" ").slice(1).join(" ")
-    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
-        let embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
-        .addField("📜 اسم السيرفر",`${args}`,true)
-        .addField("🌐 بورت السيرفر",`${port}`)
-        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
-        .setFooter(`Fox Bot.`)
-                .setTimestamp()
-    message.channel.send(embed)      
-}})
+
+
 
 
 
@@ -720,50 +597,7 @@ function hasRole(mem, role) {
   
 
 
-  client.on('message', message => {
-         
- 
-    if (message.content.startsWith(prefix + "user")) {
-              if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
 
-         message.guild.fetchInvites().then(invs => {
-let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-var moment = require('moment');
-var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
-var heg;
-if(men) {
-heg = men
-} else {
-heg = message.author
-}
-var mentionned = message.mentions.members.first();
-var h;
-if(mentionned) {
-h = mentionned
-} else {
-h = message.member
-}
- moment.locale('ar-TN');
-var id = new  Discord.RichEmbed()
-
-.setColor("#0a0909")
-.setAuthor(message.author.username)
-.setThumbnail(message.author.avatarURL)
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-.addField(': عدد الدعوات', inviteCount,false)
-.setFooter("Fox Bot.")  
-message.channel.sendEmbed(id);
-})
-}
-
-
-  
-});
 
 
 
@@ -987,22 +821,25 @@ message.channel.sendEmbed(cat);
 
 
 
+const minecraft = [  'ما معنى تطويرة؛ silk touch ؟',  'من هوة اللذي قد انهى سلسلة سيرفر مايت كرافت؟',  'ماهو الوحش اللذي يرسبن في معبد البحر؟',  'من افضل يوتيوبر ينزل شروحات)ردستونية؛عامة',  'ماذا يفعل لك الهيروبراين؟',  'ماهو الشئ اللذي يمكن مكاثرة الفلجر فيه؟',  'من هو اندر ثاني شئ في ماين كرافت',  'ماهو الامر اللذي يعطينا كوماند بلوك؟',  'كم من الوقت يستغرق اليوم العادي في ماين كرافت؟',  'هل لليردستون اهمية كبيرة في ماين كرافت؟',  'اندر اور',  'مطور ماين كرافت السابق',  'اصغر موب في ماين كرافت',  'كيف تصنع البوق',  'في اي ارتفاع تلقى الدايموند',  'موب مستحيل تضربة بالبو (السهم)',  'كم نحتاج من Glowstone Dust لكي نصنع بلكة كاملة منه',  'كم نحتاج حبة ايرون لصنع سكة الحديد (Track)',  'كم عدد قلوب البقرة',  'ن ماذا يخاف الكريبر',  'يشتهر الاندرمان ب…..?',  'كم عدد قلوب الايرون قولم',  'كم ضربة تضرب الدجاجة و تموت',  'كم بلوكة تحتاج بوابة النذر',  'كم بلوكة تحتاج بوابة الاند',  'كم تحتاج الفرن ايروون عشان تصنعها',  'كيف تصنع كرافتنق تيبل',  'كم ياخذ وقت النبات عشان يكبر',  'كم قلوب ستيفي',  'كم قلوب الاندر مان',  'هل الاندر مان يضرب',  'هل الزومبي غبي ؟ و في اي تحديث ؟',  'ماهو الافضل للتسخين الافا او فحم ؟',  'ماهو شئ الذي اقوى من الاوبسيدين ؟',]
 client.on('message', message => {
-  if(message.content.startsWith(prefix + 'move all')) {
-   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
-     if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
-  if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
-   var author = message.member.voiceChannelID;
-   var m = message.guild.members.filter(m=>m.voiceChannel)
-   message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
-   m.setVoiceChannel(author)
-   })
-   message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
 
+ 
+if (message.content.startsWith(prefix + 'mc')) {
 
-   }
-     });
+  if(!message.channel.guild) return message.reply('** This command only for servers **');
+var client= new Discord.RichEmbed()
+.setTitle("لعبة ماين كرافت ..")
+.setColor('RANDOM')
+.setDescription(`${minecraft[Math.floor(Math.random() * minecraft.length)]}`)
+.setImage("https://i.imgur.com/RyOXHmZ.png")
+               .setTimestamp()
 
+message.channel.sendEmbed(client);
+message.react("??")
+}
+
+});
 
 
 
@@ -1197,30 +1034,6 @@ if (command == "gharad") {
 
 
 
-client.on("message", message => {
-    var prefix = "=";
- 
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix - "clear")) {
-				if(!message.channel.guild) return;
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | *** ⚠ لا يوجد لك مانج ماسج ***');
-        var msg;
-        msg = parseInt();
-      
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "Done | تــم",
-        color: 0x06DF00,
-        description: "تم مسح الرسائل بنجاح",
-        footer: {
-          text: "Fox Bot"
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-     
-});
-
 
 
 
@@ -1332,7 +1145,11 @@ client.on('message', message => {
 
   let args = message.content.split(" ").slice(1);
 
- 
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
   
  
 
@@ -1366,27 +1183,44 @@ if (command == "embed") {
 
 
 
-client.on("message", message => {
-    var prefix = "=";
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix + "clear")) {
- if (!args[1]) {
-                                let x5bz1 = new Discord.RichEmbed()
-                                .setDescription("-clear <number>")
-                                .setColor("#0000FF")
-                                message.channel.sendEmbed(x5bz1);
-                            } else {
-                            let messagecount = parseInt(args[1]);
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                                                          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            let x5bz2 = new Discord.RichEmbed()
-                                                            .setColor("#008000")
-                                .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
-                                                                                        message.delete("..");
-                                message.channel.sendEmbed(x5bz2);
-                            }
-                          }
+client.on('message', message => {
+  if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'clear')) {
+if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
+if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**You Do not have permission** `ADMINISTRATOR`' );
+let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+let request = `Requested By ${message.author.username}`;
+message.channel.send(`**Are You sure you want to clear the chat?**`).then(msg => {
+msg.react('✅')
+.then(() => msg.react('❌'))
+.then(() =>msg.react('✅'))
+
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+message.channel.send(`Chat will delete`).then(m => m.delete(5000));
+var msg;
+       msg = parseInt();
+
+     message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+     message.channel.sendMessage("", {embed: {
+       title: "`` Chat Deleted ``",
+       color: 0x06DF00,
+       footer: {
+
+       }
+     }}).then(msg => {msg.delete(3000)});
+
+})
+reaction2.on("collect", r => {
+message.channel.send(`**Chat deletion cancelled**`).then(m => m.delete(5000));
+msg.delete();
+})
+})
+}
 });
 
 
@@ -1397,34 +1231,54 @@ client.on("message", message => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-  var prefix = "=";
-    client.on('message', message => {
-    if(message.content.startsWith(prefix + 'Mavatar')) {
-         var men = message.mentions.users.first();
-      var heg;
-      if(men) {
-          heg = men
-      } else {
-          heg = message.author
-      }
-  var avatar = new Discord.RichEmbed()
-.setColor('RANDOM')
-.setTitle(heg.username)
-.setImage(heg.avatarURL)
-
-message.channel.sendEmbed(avatar)
+var prefix = "=";
+const sql = require("sqlite");
+client.on("message", async message => {
+    if (message.content.startsWith(prefix + "at")) {
+         var ids = [
+            "20",
+            "1",
+            "13",
+            "18",
+            "17",
+            "9",
+            "31",
+            "22",
+            "23",
+            "2",
+            "11",
+            "19",
+            "24",
+            "25",
+            "12",
+            "33"
+            ]
+            const randomizer = Math.floor(Math.random()*ids.length);
+            const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("**اكتب محتوي الانجاز**");
+    const image = new Discord.Attachment(`https://www.minecraftskinstealer.com/achievement/a.php?i=${ids[randomizer]}&h=Achievement Get!&t=${args}`, "achievement.png");
+message.channel.send(image)
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -1750,7 +1604,16 @@ client.on('message', msg => {
 
 
 
-
+client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`** :heart: __${user}__ Has __${inviteCount}__ Invites. :heart: **`);
+});
+  }
+});
 
 
 
@@ -1782,6 +1645,16 @@ let embed = new Discord.RichEmbed()
 
 
 
+client.on("message", message => {
+ if (message.content === "=inv") {
+  const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setFooter('©Fox Bot')
+      .addField('شكراَ لاستخدامك Fox Bot', 'https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot')
+  message.author.send({embed});
+
+ }
+});
 
 
 
@@ -1840,260 +1713,6 @@ message.channel.send({ embed  : EmojiEmbed });
 
 };
 });
-
-
-client.on('message', message => {
-  if(!message.channel.guild) return;
-  if(message.content.startsWith(prefix + 'move')) {
-          if(!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("⚠️|`انت لا تمتلك الخاصيه المطلوبة`");  
-   if (message.member.hasPermission("MOVE_MEMBERS")) {
-   if (message.mentions.users.size === 0) {
-   return message.channel.send("``للأستخدام اكتب  : " +prefix+ "move [USER]``")
-  }
-  if (message.member.voiceChannel != null) {
-   if (message.mentions.members.first().voiceChannel != null) {
-   var authorchannel = message.member.voiceChannelID;
-   var usermentioned = message.mentions.members.first().id;
-  var embed = new Discord.RichEmbed()
-   .setTitle("Succes!")
-   .setColor("#000000")
-   .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
-  var embed = new Discord.RichEmbed()
-  .setTitle(`You are Moved in ${message.guild.name}`)
-   .setColor("RANDOM")
-  .setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
-   message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
-  message.guild.members.get(usermentioned).send(embed)
-  } else {
-  message.channel.send("`لا تستطيع سحب `"+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
-  }
-  } else {
-   message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
-  }
-  } else {
-  message.react("❌")
-   }
-  }
-  });
- 
-  
-  client.on('message',   eyad =>{
-   
-    var  args = eyad.content.split(" ").slice(2).join(" ")
-    var men = eyad.mentions.users.first()|| client.users.get(eyad.content.split(' ')[1])
-    var  mas = eyad.author
-                              if(eyad.content.startsWith(prefix + 'sar7')) {
-                              if(eyad.channel.type === "dm"){
-if(!args) return  eyad.channel.send("`حط بعد الايدي الرساله وانا برسلها :)`");
-if(!men) return  eyad.channel.send("`حط ايدي الشخص \n او يقد يكون الشخص ليس موجود في سرفرات مشتركه بيني وبينة`");
-                      var currentTime = new Date(),
-            Year = currentTime.getFullYear(),
-            Month = currentTime.getMonth() + 1,
-            Day = currentTime.getDate();
-     var eyadandr3d = new Discord.RichEmbed()
-     .setAuthor(eyad.author.username , eyad.author.avatarURL)
-     .setThumbnail(men.avatarURL)
-     .setDescription(`هل انت موافق لارسال الرساله \n موافق = ✅ \nرفض = ❌ \n**محتوي الرسالة : ${args}**`)
-     .setTimestamp()
-     .setFooter('لديك 60 ثانية للاختيار')
-     eyad.channel.send(eyadandr3d).then(message => {
- message.react('✅').then(r=>{
- message.react('❌').then(r=>{            
-    var kk = (reaction, user) => reaction.emoji.name === '✅' && user.id === eyad.author.id;    
-    var nn = (reaction, user) => reaction.emoji.name === '❌' && user.id === eyad.author.id;
-    var kkk = message.createReactionCollector(kk, { time: 60000 });
-    var nnn = message.createReactionCollector(nn, { time: 60000 });
-kkk.on("collect", r => {
-          const embed = new Discord.RichEmbed()
-               .setThumbnail("https://cdn.discordapp.com/attachments/429056808561278979/450412294078332948/download.jpg")  
-               .setColor("RANDOM")
-               .addField('**●[اهلا بك]** ', `<@${men.id}>` , true)
-               .addField('**●[لقد تمت مصارحتك]**' ,       ` __${args}__ ` , true)
-               .addField('**●[تاريخ المصارحة]**' , Day + "-" + Month + "-" + Year , true)
-          client.users.get(men.id).sendEmbed(embed)
-          eyad.reply(`لقد تم ارسال الصراحه للشخص \n <@${men.id}>`)
-message.delete()
-          eyad.delete();
-})
-nnn.on("collect", r => {
-message.delete()
-eyad.reply("`تم الغاء الصراحة`")
-eyad.delete();
-})
-})
-})
-})
-}
-}
-});
-
-
-
-
-
-
-
-
-
-client.on('message',function(message) {
-  if(message.content === prefix + "inv") {
-      if(!message.channel.guild) return;
-      var mmmmEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username)
-      .setTitle('-  اضغط هنا !.')
-      .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot`)
-      .setThumbnail(client.user.avatarURL)
-      .setFooter(`- Requested By: ${message.author.tag}`,message.author.avatarURL);
-      message.channel.send(mmmmEmbed)
-  }
-});
-
-
-client.on('message', function(message) {
-  if(message.content.startsWith(prefix + 'roll')) {
-     var args = message.content.split(" ").slice(1);
-      if (!args[0]) {
-          message.channel.send('**حط رقم معين يتم السحب منه**');
-          return;
-          }
-  message.channel.send(Math.floor(Math.random() * args.join(' ')));
-          if (!args[0]) {
-        message.edit('1')
-        return;
-      }
-  }
-});
-
-
-client.on("message", message => {
- 
-             
-  if(!message.channel.guild) return;
-if(message.author.bot) return;
-if(message.content === prefix + "icon"){
-  const embed = new Discord.RichEmbed()
-
-.setTitle(`This is  ** ${message.guild.name} **  Photo !`)
-.setAuthor(message.author.username, message.guild.iconrURL)
-.setColor(0x164fe3)
-.setImage(message.guild.iconURL)
-.setURL(message.guild.iconrURL)
-            .setTimestamp()
-
-message.channel.send({embed});
-}
-});
-
-
-client.on('message', message => {
-  if(message.content === prefix + 'مصحف' || message.content === prefix + 'ms7f') {
-      var pages = ['http://quran.ksu.edu.sa/ayat/safahat1/1.png','http://quran.ksu.edu.sa/ayat/safahat1/2.png','http://quran.ksu.edu.sa/ayat/safahat1/3.png','http://quran.ksu.edu.sa/ayat/safahat1/4.png','http://quran.ksu.edu.sa/ayat/safahat1/5.png','http://quran.ksu.edu.sa/ayat/safahat1/6.png','http://quran.ksu.edu.sa/ayat/safahat1/7.png','http://quran.ksu.edu.sa/ayat/safahat1/8.png','http://quran.ksu.edu.sa/ayat/safahat1/9.png','http://quran.ksu.edu.sa/ayat/safahat1/10.png','http://quran.ksu.edu.sa/ayat/safahat1/11.png','http://quran.ksu.edu.sa/ayat/safahat1/12.png','http://quran.ksu.edu.sa/ayat/safahat1/13.png','http://quran.ksu.edu.sa/ayat/safahat1/14.png','http://quran.ksu.edu.sa/ayat/safahat1/15.png','http://quran.ksu.edu.sa/ayat/safahat1/16.png','http://quran.ksu.edu.sa/ayat/safahat1/17.png','http://quran.ksu.edu.sa/ayat/safahat1/18.png','http://quran.ksu.edu.sa/ayat/safahat1/19.png','http://quran.ksu.edu.sa/ayat/safahat1/20.png','http://quran.ksu.edu.sa/ayat/safahat1/21.png','http://quran.ksu.edu.sa/ayat/safahat1/22.png','http://quran.ksu.edu.sa/ayat/safahat1/23.png','http://quran.ksu.edu.sa/ayat/safahat1/24.png','http://quran.ksu.edu.sa/ayat/safahat1/25.png','http://quran.ksu.edu.sa/ayat/safahat1/26.png','http://quran.ksu.edu.sa/ayat/safahat1/27.png','http://quran.ksu.edu.sa/ayat/safahat1/28.png','http://quran.ksu.edu.sa/ayat/safahat1/29.png','http://quran.ksu.edu.sa/ayat/safahat1/30.png','http://quran.ksu.edu.sa/ayat/safahat1/31.png','http://quran.ksu.edu.sa/ayat/safahat1/32.png','http://quran.ksu.edu.sa/ayat/safahat1/33.png','http://quran.ksu.edu.sa/ayat/safahat1/34.png','http://quran.ksu.edu.sa/ayat/safahat1/35.png','http://quran.ksu.edu.sa/ayat/safahat1/36.png','http://quran.ksu.edu.sa/ayat/safahat1/37.png','http://quran.ksu.edu.sa/ayat/safahat1/38.png','http://quran.ksu.edu.sa/ayat/safahat1/39.png','http://quran.ksu.edu.sa/ayat/safahat1/40.png','http://quran.ksu.edu.sa/ayat/safahat1/41.png','http://quran.ksu.edu.sa/ayat/safahat1/42.png','http://quran.ksu.edu.sa/ayat/safahat1/43.png','http://quran.ksu.edu.sa/ayat/safahat1/44.png','http://quran.ksu.edu.sa/ayat/safahat1/45.png','http://quran.ksu.edu.sa/ayat/safahat1/46.png','http://quran.ksu.edu.sa/ayat/safahat1/47.png','http://quran.ksu.edu.sa/ayat/safahat1/48.png','http://quran.ksu.edu.sa/ayat/safahat1/49.png','http://quran.ksu.edu.sa/ayat/safahat1/50.png','http://quran.ksu.edu.sa/ayat/safahat1/51.png','http://quran.ksu.edu.sa/ayat/safahat1/52.png','http://quran.ksu.edu.sa/ayat/safahat1/53.png','http://quran.ksu.edu.sa/ayat/safahat1/55.png','http://quran.ksu.edu.sa/ayat/safahat1/56.png','http://quran.ksu.edu.sa/ayat/safahat1/57.png','http://quran.ksu.edu.sa/ayat/safahat1/58.png','http://quran.ksu.edu.sa/ayat/safahat1/59.png','http://quran.ksu.edu.sa/ayat/safahat1/60.png','http://quran.ksu.edu.sa/ayat/safahat1/60.png','http://quran.ksu.edu.sa/ayat/safahat1/61.png','http://quran.ksu.edu.sa/ayat/safahat1/62.png','http://quran.ksu.edu.sa/ayat/safahat1/63.png','http://quran.ksu.edu.sa/ayat/safahat1/64.png','http://quran.ksu.edu.sa/ayat/safahat1/65.png','http://quran.ksu.edu.sa/ayat/safahat1/66.png','http://quran.ksu.edu.sa/ayat/safahat1/67.png','http://quran.ksu.edu.sa/ayat/safahat1/68.png','http://quran.ksu.edu.sa/ayat/safahat1/69.png','http://quran.ksu.edu.sa/ayat/safahat1/70.png','http://quran.ksu.edu.sa/ayat/safahat1/71.png','http://quran.ksu.edu.sa/ayat/safahat1/72.png','http://quran.ksu.edu.sa/ayat/safahat1/73.png','http://quran.ksu.edu.sa/ayat/safahat1/74.png','http://quran.ksu.edu.sa/ayat/safahat1/75.png','http://quran.ksu.edu.sa/ayat/safahat1/76.png','http://quran.ksu.edu.sa/ayat/safahat1/77.png','http://quran.ksu.edu.sa/ayat/safahat1/78.png','http://quran.ksu.edu.sa/ayat/safahat1/79.png','http://quran.ksu.edu.sa/ayat/safahat1/80.png','http://quran.ksu.edu.sa/ayat/safahat1/81.png','http://quran.ksu.edu.sa/ayat/safahat1/82.png','http://quran.ksu.edu.sa/ayat/safahat1/83.png','http://quran.ksu.edu.sa/ayat/safahat1/84.png','http://quran.ksu.edu.sa/ayat/safahat1/85.png','http://quran.ksu.edu.sa/ayat/safahat1/86.png','http://quran.ksu.edu.sa/ayat/safahat1/87.png','http://quran.ksu.edu.sa/ayat/safahat1/88.png','http://quran.ksu.edu.sa/ayat/safahat1/89.png','http://quran.ksu.edu.sa/ayat/safahat1/90.png','http://quran.ksu.edu.sa/ayat/safahat1/91.png','http://quran.ksu.edu.sa/ayat/safahat1/92.png','http://quran.ksu.edu.sa/ayat/safahat1/93.png','http://quran.ksu.edu.sa/ayat/safahat1/94.png','http://quran.ksu.edu.sa/ayat/safahat1/95.png','http://quran.ksu.edu.sa/ayat/safahat1/96.png','http://quran.ksu.edu.sa/ayat/safahat1/97.png','http://quran.ksu.edu.sa/ayat/safahat1/98.png','http://quran.ksu.edu.sa/ayat/safahat1/99.png','http://quran.ksu.edu.sa/ayat/safahat1/100.png','http://quran.ksu.edu.sa/ayat/safahat1/101.png','http://quran.ksu.edu.sa/ayat/safahat1/102.png','http://quran.ksu.edu.sa/ayat/safahat1/103.png','http://quran.ksu.edu.sa/ayat/safahat1/104.png','http://quran.ksu.edu.sa/ayat/safahat1/105.png','http://quran.ksu.edu.sa/ayat/safahat1/106.png','http://quran.ksu.edu.sa/ayat/safahat1/107.png','http://quran.ksu.edu.sa/ayat/safahat1/108.png','http://quran.ksu.edu.sa/ayat/safahat1/109.png','http://quran.ksu.edu.sa/ayat/safahat1/110.png','http://quran.ksu.edu.sa/ayat/safahat1/111.png','http://quran.ksu.edu.sa/ayat/safahat1/112.png','http://quran.ksu.edu.sa/ayat/safahat1/113.png','http://quran.ksu.edu.sa/ayat/safahat1/114.png','http://quran.ksu.edu.sa/ayat/safahat1/115.png','http://quran.ksu.edu.sa/ayat/safahat1/116.png','http://quran.ksu.edu.sa/ayat/safahat1/117.png','http://quran.ksu.edu.sa/ayat/safahat1/118.png','http://quran.ksu.edu.sa/ayat/safahat1/119.png','http://quran.ksu.edu.sa/ayat/safahat1/120.png','http://quran.ksu.edu.sa/ayat/safahat1/121.png','http://quran.ksu.edu.sa/ayat/safahat1/122.png','http://quran.ksu.edu.sa/ayat/safahat1/123.png','http://quran.ksu.edu.sa/ayat/safahat1/124.png','http://quran.ksu.edu.sa/ayat/safahat1/125.png','http://quran.ksu.edu.sa/ayat/safahat1/126.png','http://quran.ksu.edu.sa/ayat/safahat1/127.png','http://quran.ksu.edu.sa/ayat/safahat1/128.png','http://quran.ksu.edu.sa/ayat/safahat1/129.png','http://quran.ksu.edu.sa/ayat/safahat1/130.png','http://quran.ksu.edu.sa/ayat/safahat1/131.png','http://quran.ksu.edu.sa/ayat/safahat1/132.png','http://quran.ksu.edu.sa/ayat/safahat1/133.png','http://quran.ksu.edu.sa/ayat/safahat1/134.png','http://quran.ksu.edu.sa/ayat/safahat1/135.png','http://quran.ksu.edu.sa/ayat/safahat1/136.png','http://quran.ksu.edu.sa/ayat/safahat1/137.png','http://quran.ksu.edu.sa/ayat/safahat1/138.png','http://quran.ksu.edu.sa/ayat/safahat1/139.png','http://quran.ksu.edu.sa/ayat/safahat1/140.png','http://quran.ksu.edu.sa/ayat/safahat1/141.png','http://quran.ksu.edu.sa/ayat/safahat1/142.png','http://quran.ksu.edu.sa/ayat/safahat1/143.png','http://quran.ksu.edu.sa/ayat/safahat1/144.png','http://quran.ksu.edu.sa/ayat/safahat1/145.png','http://quran.ksu.edu.sa/ayat/safahat1/146.png','http://quran.ksu.edu.sa/ayat/safahat1/147.png','http://quran.ksu.edu.sa/ayat/safahat1/148.png','http://quran.ksu.edu.sa/ayat/safahat1/149.png','http://quran.ksu.edu.sa/ayat/safahat1/150.png','http://quran.ksu.edu.sa/ayat/safahat1/151.png','http://quran.ksu.edu.sa/ayat/safahat1/152.png','http://quran.ksu.edu.sa/ayat/safahat1/153.png','http://quran.ksu.edu.sa/ayat/safahat1/154.png','http://quran.ksu.edu.sa/ayat/safahat1/155.png','http://quran.ksu.edu.sa/ayat/safahat1/156.png','http://quran.ksu.edu.sa/ayat/safahat1/157.png','http://quran.ksu.edu.sa/ayat/safahat1/158.png','http://quran.ksu.edu.sa/ayat/safahat1/159.png','http://quran.ksu.edu.sa/ayat/safahat1/160.png','http://quran.ksu.edu.sa/ayat/safahat1/161.png','http://quran.ksu.edu.sa/ayat/safahat1/162.png','http://quran.ksu.edu.sa/ayat/safahat1/163.png','http://quran.ksu.edu.sa/ayat/safahat1/164.png','http://quran.ksu.edu.sa/ayat/safahat1/165.png','http://quran.ksu.edu.sa/ayat/safahat1/166.png','http://quran.ksu.edu.sa/ayat/safahat1/167.png','http://quran.ksu.edu.sa/ayat/safahat1/168.png','http://quran.ksu.edu.sa/ayat/safahat1/169.png','http://quran.ksu.edu.sa/ayat/safahat1/170.png','http://quran.ksu.edu.sa/ayat/safahat1/171.png','http://quran.ksu.edu.sa/ayat/safahat1/172.png','http://quran.ksu.edu.sa/ayat/safahat1/173.png','http://quran.ksu.edu.sa/ayat/safahat1/174.png','http://quran.ksu.edu.sa/ayat/safahat1/175.png','http://quran.ksu.edu.sa/ayat/safahat1/176.png','http://quran.ksu.edu.sa/ayat/safahat1/177.png','http://quran.ksu.edu.sa/ayat/safahat1/178.png','http://quran.ksu.edu.sa/ayat/safahat1/179.png','http://quran.ksu.edu.sa/ayat/safahat1/180.png','http://quran.ksu.edu.sa/ayat/safahat1/181.png','http://quran.ksu.edu.sa/ayat/safahat1/182.png','http://quran.ksu.edu.sa/ayat/safahat1/183.png','http://quran.ksu.edu.sa/ayat/safahat1/184.png','http://quran.ksu.edu.sa/ayat/safahat1/185.png','http://quran.ksu.edu.sa/ayat/safahat1/186.png','http://quran.ksu.edu.sa/ayat/safahat1/187.png','http://quran.ksu.edu.sa/ayat/safahat1/188.png','http://quran.ksu.edu.sa/ayat/safahat1/189.png','http://quran.ksu.edu.sa/ayat/safahat1/190.png','http://quran.ksu.edu.sa/ayat/safahat1/191.png','http://quran.ksu.edu.sa/ayat/safahat1/192.png','http://quran.ksu.edu.sa/ayat/safahat1/193.png','http://quran.ksu.edu.sa/ayat/safahat1/194.png','http://quran.ksu.edu.sa/ayat/safahat1/195.png','http://quran.ksu.edu.sa/ayat/safahat1/196.png','http://quran.ksu.edu.sa/ayat/safahat1/197.png','http://quran.ksu.edu.sa/ayat/safahat1/198.png','http://quran.ksu.edu.sa/ayat/safahat1/199.png','http://quran.ksu.edu.sa/ayat/safahat1/200.png']
-      var page = 1;
-   
-      message.delete();
-   
-      var embed = new Discord.RichEmbed()
-      .setColor('#264d00')
-      .setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg')
-      .setImage(pages[page-1])
-   
-  // ${page}
-  // ${pages.length}
-      message.channel.sendEmbed(embed).then(msg => {
-   
-          msg.react('⏮').then( r => {
-              msg.react('⬅')
-          .then(() => msg.react('⏹'))
-          .then(() => msg.react('➡'))
-          .then(() => msg.react('⏭'))
-   
-          var backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅' && user.id === message.author.id;
-              var forwardsFilter = (reaction, user) => reaction.emoji.name === '➡' && user.id === message.author.id;
-   
-              var sbackwardsFilter = (reaction, user) => reaction.emoji.name === '⏮' && user.id === message.author.id;
-              var sforwardsFilter = (reaction, user) => reaction.emoji.name === '⏭' && user.id === message.author.id;
-   
-              var cancelFilter = (reaction, user) => reaction.emoji.name === '⏹' && user.id === message.author.id;
-   
-          var backwards = msg.createReactionCollector(backwardsFilter, { time: 0 });
-              var forwards = msg.createReactionCollector(forwardsFilter, { time: 0 });
-   
-          var sbackwards = msg.createReactionCollector(sbackwardsFilter, { time: 0 });
-              var sforwards = msg.createReactionCollector(sforwardsFilter, { time: 0 });
-   
-              var cancel = msg.createReactionCollector(cancelFilter, { time: 0 });
-   
-              backwards.on('collect', r => {
-                  if (page === 1) return;
-                  page--;
-                  embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg');
-                  msg.edit(embed)
-              })
-              forwards.on('collect', r => {
-                  if (page === pages.length) return;
-                  page++;
-                  embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg');
-                  msg.edit(embed)
-              })
-              sbackwards.on('collect', r => {
-                  if (page === 1) return;
-                  page = 1;
-                  embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg');
-                  msg.edit(embed)
-              })
-              sforwards.on('collect', r => {
-                  if (page === pages.length) return;
-                  page = 200; // إذا تبي تكمل ل 600 صفحة غير الرقم للصفحة الي وصلت لها
-                  embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg');
-                  msg.edit(embed)
-              })
-              cancel.on('collect', r => {
-                  embed.setDescription(`**سوف يتم إغلاق القائمة**`);
-                  embed.setImage('');
-                  embed.setFooter(`Menu will close after 3sec`, 'https://cdn.discordapp.com/attachments/470892033612185610/471340486808961024/download.jpg');
-                  msg.edit(embed).then(msg.delete(3000));
-              })
-          })
-      })
-  }
-  });
-   
-
-
-
-  
-
-
-    
-
-
-
-
-
-      client.on('message', message => {
-        if (message.author.bot) return;
-        if(message.content == '=mb') {
-        const embed = new Discord.RichEmbed()
-        .addField(`حالة الأعضاء 🔋`,'-',   true)
-    .addField(`💚 اونلاين :   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
-    .addField(`❤ مشغول :     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
-    .addField(`💛 خامل :      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)  
-    .addField(`🖤 اوفلاين :   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true)
-    .addField(`💙   الكل :  ${message.guild.memberCount}`,'-',   true)        
-             message.channel.send({embed});
-     
-        }
-      });
-
-
-
-
-
-
 
 
 
