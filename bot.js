@@ -1714,7 +1714,7 @@ message.channel.send({ embed  : EmojiEmbed });
 };
 });
 
-clien.on('message', message => {
+client.on('message', message => {
       if(message.content == '=q1'){
         message.react('🔊')}  return;
   const ytdl = require('ytdl-core');
