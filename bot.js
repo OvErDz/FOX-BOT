@@ -1875,7 +1875,7 @@ client.on('message',function(message) {
       if(!message.channel.guild) return;
       var mmmmEmbed = new Discord.RichEmbed()
       .setAuthor(client.user.username)
-      .setTitle('-  اضغط هنا !.')
+      .setTitle('اضغط هنا')
       .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot`)
       .setThumbnail(client.user.avatarURL)
       .setFooter(`- Requested By: ${message.author.tag}`,message.author.avatarURL);
