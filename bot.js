@@ -419,7 +419,7 @@ client.on("message", message => {
 
 💎=user 『لعرض معلوماتك』
 
-💎=tr 『لترجمة الكلام』 
+💎=tra 『لترجمة الكلام』 
 
 💎=embed 『خاصيه غرد لكن بغير طريقه』
 
@@ -2057,7 +2057,7 @@ message.channel.send(image)
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("=tr")) {
+    if (message.content.startsWith("=tra")) {
 
         const translate = require('google-translate-api');
         const Discord = require('discord.js');
