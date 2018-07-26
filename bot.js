@@ -425,7 +425,7 @@ client.on("message", message => {
 
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
 
-💎=emojil 『يعطيك رابط الايموجي الي في تبيه』
+💎=emojilink 『يعطيك رابط الايموجي الي في تبيه』
 
 💎=ms7f 『لاضهار المصحف』
 
@@ -1754,7 +1754,7 @@ message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
 client.on('message', message =>{
   let args = message.content.split(' ');
   let prefix = '=';
-if(args[0] === `${prefix}emojil`){
+if(args[0] === `${prefix}emojilink`){
 let findEmoji = args[1];
 
 if(!findEmoji || findEmoji === '') return  message.reply(`**أدخل الايموجي**`);
@@ -1875,7 +1875,7 @@ client.on('message',function(message) {
       if(!message.channel.guild) return;
       var mmmmEmbed = new Discord.RichEmbed()
       .setAuthor(client.user.username)
-      .setTitle('اضغط هنا')
+      .setTitle('! click Here .')
       .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=470627615250579487&permissions=8&scope=bot`)
       .setThumbnail(client.user.avatarURL)
       .setFooter(`- Requested By: ${message.author.tag}`,message.author.avatarURL);
