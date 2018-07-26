@@ -419,6 +419,8 @@ client.on("message", message => {
 
 💎=user 『لعرض معلوماتك』
 
+💎=tr 『لترجمة الكلام』 
+
 💎=embed 『خاصيه غرد لكن بغير طريقه』
 
 💎=sug 『يعطي اقتراح للسيرفر لازم روم اسمهاsug』   
@@ -2076,7 +2078,7 @@ client.on('message', message => {
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
-                    name: "Fox Bo",
+                    name: "Fox Bot",
                     value: `**من:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**الي: **${language}\n\`\`\`${res.text}\`\`\``
                   }
                 ],
