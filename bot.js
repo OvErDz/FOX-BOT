@@ -2054,16 +2054,7 @@ message.channel.send(image)
     }
 });
 
-const HypixelAPI = require('hypixel-api')
- 
- 
-const args = process.argv.slice(2)
- 
-if (args.length < 2) {
-    console.log('Hi,')
-    process.exit(0)
-}
- 
+
  
 
 client.on('message', message => {
