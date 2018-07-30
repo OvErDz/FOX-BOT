@@ -2173,7 +2173,7 @@ client.on("message", (message) => {
 
 
     if (message.content.startsWith("=close")) {
-        if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`لا يمكنك استخدام أمر الإغلاق خارج التذاكر.`);
+        if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`لا يمكنك استخدام أمر الإغلاق خارج التذاكر..`);
 
         message.channel.send(`ادا تريد حقا اغلاق التذكرة اكتب **نعم** لديك **30 ثانية**`)
             .then((m) => {
