@@ -2171,7 +2171,7 @@ client.on("message", (message) => {
     if (message.content.startsWith("=close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`لا يمكنك استخدام أمر الإغلاق خارج التذاكر.`);
 
-        message.channel.send(`هل أنت واثق؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء! للتأكيد ، اكتب \ "/ confirm \`. سوف ينتهي المهلة خلال 30 ثانية ويتم إلغاؤها.`)
+        message.channel.send('هل أنت واثق؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء! للتأكيد ، اكتب  ``/ confirm ``. سوف ينتهي المهلة خلال 30 ثانية ويتم إلغاؤها.`)
             .then((m) => {
                 message.channel.awaitMessages(response => response.content === '/confirm', {
                         max: 1,
