@@ -2163,7 +2163,7 @@ client.on("message", (message) => {
             message.channel.send(`:white_check_mark: تم إنشاء تذكرتك, #${c.name}.`);
             const embed = new Discord.RichEmbed()
                 .setColor(0xCF40FA)
-                .addField(`هلا ${message.author.username}!`, `يرجى محاولة شرح سبب فتح هذه التذكرة بأكبر قدر ممكن من التفاصيل. سيكون لدينا `)
+                .addField(`هلا ${message.author.username}!`, `يرجى محاولة شرح سبب فتح هذه التذكرة بأكبر قدر ممكن من التفاصيل. وسوف نحل مشكلتك قريبا `)
                 .setTimestamp();
             c.send({
                 embed: embed
