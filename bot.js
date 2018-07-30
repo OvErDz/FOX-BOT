@@ -2138,12 +2138,12 @@ client.on('message', message => {
 });
 
 
+
 client.on("message", (message) => {
     
     if (message.content.startsWith("=new")) {
         const reason = message.content.split(" ").slice(1).join(" ");
-        if (!message.guild.roles.exists("name", "Support")) return message.channel.send(`لا يحتوي هذا االسيرفرعلى رتبة **Support** الدعم ، لذا لن يتم فتح البطاقة.
-        إذا كنت مسؤولاً ، فأنشئ رتبة بهذا الاسم بالضبط وقدمه للمستخدمين الذين يمكنهم مشاهدة التذاكر.`);
+        if (!message.guild.roles.exists("name", "Support")) return message.channel.send(`لازم يكون في السيرفر رتبة اسمها **support** `);
         if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`لديك بالفعل تذكرة مفتوحة.`);
         message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
             let role = message.guild.roles.find("name", "Support");
