@@ -2142,7 +2142,7 @@ client.on("message", (message) => {
     
     if (message.content.startsWith("=new")) {
         const reason = message.content.split(" ").slice(1).join(" ");
-        if (!message.guild.roles.exists("name", "Support")) return message.channel.send(`لا يحتوي هذا االسيرفرعلى رتبة ``Support`` الدعم ، لذا لن يتم فتح البطاقة.
+        if (!message.guild.roles.exists("name", "Support")) return message.channel.send(`لا يحتوي هذا االسيرفرعلى رتبة **Support** الدعم ، لذا لن يتم فتح البطاقة.
         إذا كنت مسؤولاً ، فأنشئ رتبة بهذا الاسم بالضبط وقدمه للمستخدمين الذين يمكنهم مشاهدة التذاكر.`);
         if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`لديك بالفعل تذكرة مفتوحة.`);
         message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
@@ -2175,7 +2175,7 @@ client.on("message", (message) => {
     if (message.content.startsWith("=close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`لا يمكنك استخدام أمر الإغلاق خارج التذاكر.`);
 
-        message.channel.send(`اكتب /confirm لاغلاق لديك 30 ثانية`)
+        message.channel.send(`اكتب** /confirm** لاغلاق لديك 30 ثانية`)
             .then((m) => {
                 message.channel.awaitMessages(response => response.content === '/confirm', {
                         max: 1,
