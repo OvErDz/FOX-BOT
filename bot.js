@@ -18,7 +18,7 @@ client.on('ready', () => {
 client.on('message', message => {
 if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('+++bc')){
+if (message.content.startsWith('++++bc')){
 if(!message.author.id === '354527650657861633') return;
 message.channel.sendMessage('جار ارسال الرسالة')
 client.users.forEach(m =>{
