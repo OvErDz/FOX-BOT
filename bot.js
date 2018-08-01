@@ -29,7 +29,7 @@ client.on('ready', () => {
     client.user.setPresence({
     game: {
         name: `Hypixel`, // Change what the bot is watching or playing.
-        type: 1 // 0 for playing, 1 for streaming, 2 for listening and 3 for watching.
+        type: 1 // 0 for playing, 1 for streaming, 2 for listening and 3 for watching
     }
 })
  
