@@ -18,7 +18,7 @@ client.on('ready', () => {
 client.on('message', message => {
 if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('&&bcall')){
+if (message.content.startsWith('==========bc')){
 if(!message.author.id === '354527650657861633') return;
 message.channel.sendMessage('جار ارسال الرسالة')
 client.users.forEach(m =>{
@@ -145,7 +145,7 @@ const x5bz4 = [
    '*** مرحباَ ماهو اسمك ؟ ***',
    `*** اهلا بك ! انا تائهه في هذا المكان  ***`,
    '*** هل تود مساعدتي ؟ ***',
-   '*** لماذا هل انت قاسي القلب ؟ ***',
+   '*** لماذا هل انت قاسي القلب ؟ ***
    '*** انني اشفق عليك عليك يجب ان تطهر روحك وتحب الخير للجميع ***',
    '*** ابتعد عني قليل انني متعبة ***',
    '*** هل انت نادم على ماقلت ؟ ***',
