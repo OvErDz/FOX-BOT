@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.on('ready', () => {
-  client.user.setGame('=help|=inv','https://www.twitch.tv/OvErDz1');
+  client.user.setGame('=help|Fox Bot','https://www.twitch.tv/OvErDz1');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
@@ -672,7 +672,7 @@ client.on('message', message => {
             .addField('``My ID``' , `[ ${client.user.id} ]` , true)
                   .addField('``My Prefix``' , `=` , true)
                   .addField('``My Language``' , `[ Java Script ]` , true)
-                  .setFooter('By | IIVolly_xD ')
+                  .setFooter('By | !                 𝓥𝓞𝓛𝓛𝓨.." 🕊 ')
     })
 }
 });
