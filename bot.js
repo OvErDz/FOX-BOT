@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.on('ready', () => {
-  client.user.setGame('=help|Fox Bot','https://www.twitch.tv/OvErDz1');
+  client.user.setGame('=help|=inv','https://www.twitch.tv/OvErDz1');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
@@ -1796,7 +1796,7 @@ client.on('message', message => {
    
       var embed = new Discord.RichEmbed()
       .setColor('#264d00')
-      .setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg')
+      .setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg')
       .setImage(pages[page-1])
    
   // ${page}
@@ -1829,34 +1829,34 @@ client.on('message', message => {
                   if (page === 1) return;
                   page--;
                   embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg');
+                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg');
                   msg.edit(embed)
               })
               forwards.on('collect', r => {
                   if (page === pages.length) return;
                   page++;
                   embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg');
+                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg');
                   msg.edit(embed)
               })
               sbackwards.on('collect', r => {
                   if (page === 1) return;
                   page = 1;
                   embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg');
+                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg');
                   msg.edit(embed)
               })
               sforwards.on('collect', r => {
                   if (page === pages.length) return;
                   page = 200; // إذا تبي تكمل ل 600 صفحة غير الرقم للصفحة الي وصلت لها
                   embed.setImage(pages[page-1]);
-                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg');
+                  embed.setFooter(`القراآن الكريم | صفحة رقم ${page} من اصل ${pages.length} صفحة`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg');
                   msg.edit(embed)
               })
               cancel.on('collect', r => {
                   embed.setDescription(`**سوف يتم إغلاق القائمة**`);
                   embed.setImage('');
-                  embed.setFooter(`سيقفل المصحف بعد 3 ثواني`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg');
+                  embed.setFooter(`سيقفل المصحف بعد 3 ثواني`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg');
                   msg.edit(embed).then(msg.delete(3000));
               })
           })
@@ -1941,7 +1941,7 @@ client.on('message', message => {
             message.channel.send({embed: {
                 color: 3447003,
                 author: {
-                  name: 'Fox Bo translate',
+                  name: 'Fox Bot translate',
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
@@ -2113,7 +2113,7 @@ client.on('message', async msg => { // eslint-disable-line
 			        .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-					.setFooter(`Fox Bot`, 'https://cdn.discordapp.com/attachments/456656241775738911/472355947981963285/images.jpg')
+					.setFooter(`Fox Bot`, 'https://cdn.discordapp.com/attachments/442701624423481344/476025919027281939/hand-painted-fox-design_1152-89.jpg')
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
 					
 					// eslint-disable-next-line max-depth
