@@ -8,6 +8,14 @@ client.on('ready', () => {
 });
 
 
+client.on("message", (message) => {
+  if (message.content.startsWith( "=sr")) {
+    if (!message.content.split(" ")[1]) return message.reply("قول الكلمة اللي لازم أبحث عنها ,_,")
+    message.channel.send("https://lmgtfy.com/?q=" + message.content.split(" ").join(" ").slice(4))
+  };
+});
+
+
 
 client.on('message', message => {
   if(message.content === "==bot") {
