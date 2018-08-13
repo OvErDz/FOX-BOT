@@ -7,6 +7,22 @@ client.on('ready', () => {
   console.log('---------------')
 });
 
+client.on('message', async message => {
+  if(message.content.startsWith(prefix + "bcall")) {
+    let i = client.users.size;
+    if(message.author.id !== '354527650657861633') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
+    var args = message.content.split(' ').slice(1).join(' ');
+    if(!args) return message.channel.send('❎ » يجب عليك كتابة الرسالة')
+    setTimeout(() => {
+      message.channel.send(`تم الارسال لـ ${i} شخص`)
+    }, client.users.size * 500);
+    client.users.forEach(s => {
+      s.send(args).catch(e => i--);
+    });
+  }
+});
+
+
 
 client.on("message", (message) => {
   if (message.content.startsWith( "=sr")) {
@@ -2271,22 +2287,4 @@ client.on("message", message => {
       .setDescription(`
 ${prefix}شغل ⇏ لتشغيل أغنية برآبط أو بأسم
 ${prefix}تخطي ⇏ لتجآوز الأغنية الحآلية
-${prefix}وقف ⇏ إيقآف الأغنية مؤقتا
-${prefix}كمل ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا
-${prefix}صوت ⇏ لتغيير درجة الصوت 100 - 0
-${prefix}اخرج ⇏ لإخرآج البوت من الروم
-${prefix}الاغنية ⇏ لمعرفة الأغنية المشغلة حآليا
-${prefix}القائمة ⇏ لمعرفة قآئمة التشغيل
- `)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-   message.channel.sendEmbed(embed)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-    
-   }
-   }); 
-
-
-
-
-
-
-
-   client.login(process.env.BOT_TOKEN);
+${prefix}وقف ⇏ إ
