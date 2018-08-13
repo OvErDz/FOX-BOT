@@ -2307,13 +2307,25 @@ function play(guild, song) {
 
 
 client.on("message", message => {
- if (message.content === `${prefix}m-help`) {
-  const embed = new Discord.RichEmbed() //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-      .setColor("#000000")//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-      .setDescription(`
-${prefix}شغل ⇏ لتشغيل أغنية برآبط أو بأسم
-${prefix}تخطي ⇏ لتجآوز الأغنية الحآلية
-${prefix}وقف ⇏ إ
+    if (message.content === `${prefix}help`) {
+     const embed = new Discord.RichEmbed() //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+         .setColor("#000000")//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+         .setDescription(`
+   ${prefix}شغل ⇏ لتشغيل أغنية برآبط أو بأسم
+   ${prefix}تخطي ⇏ لتجآوز الأغنية الحآلية
+   ${prefix}وقف ⇏ إيقآف الأغنية مؤقتا
+   ${prefix}كمل ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا
+   ${prefix}صوت ⇏ لتغيير درجة الصوت 100 - 0
+   ${prefix}اخرج ⇏ لإخرآج البوت من الروم
+   ${prefix}الاغنية ⇏ لمعرفة الأغنية المشغلة حآليا
+   ${prefix}القائمة ⇏ لمعرفة قآئمة التشغيل
+   
+    `)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+      message.channel.sendEmbed(embed)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+       
+      }
+      }); 
+
 
 
 
